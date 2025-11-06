@@ -155,7 +155,7 @@ $erro = 'Erro ao enviar a imagem.';
                 $erro = 'Erro ao atualizar: ' . $e->getMessage();
             }
         }
-    } // CHave do if antes do try fechada aqui
+    } // Chave do if antes do try fechada aqui
 } // chave do primeiro if fechada aqui
 
 // =========================================================================================================================================================
@@ -164,68 +164,71 @@ $erro = 'Erro ao enviar a imagem.';
 ?>
 
 <!DOCTYPE html>
-<html lang='en'>
-<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet'>
-<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'></script> 
-<meta charset="utf-8" name='viewport' content = 'width=device-width, initial-scale=1.0'>
-<title>Editar Cadastro</title>
+<html lang='pt-BR'>
+<head>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'></script> 
+    <meta charset="utf-8" name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Editar Cadastro</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Cadastro</h1>
 
-<h1>Editar Cadastro</h1>
-
-<?php if ($erro): ?>
-    <p style="color:red;"><?= htmlspecialchars($erro) ?></p>
-
-<!-- Início do formulário de edição (pré-preenchido) -->
-<form method="post" enctype="multipart/form-data">
-    <p>
-        <label>Nome:<br>
-        <input type="text" name="nome" required minlenght="3"
-        value="<?= htmlspecialchars($registro['nome'] ?? '') ?>">
-</label>
-    </p>
-
-    <p>
-        <label>E-mail:<br>
-        <input type="email" name="email" required
-        value="<?= htmlspecialchars($registro['email'] ?? '') ?>">
-</label></p>
-
-<p>
-    <label>Telefone:<br>
-    <input type="text" name="telefone" required 
-    placeholder="(11) 91234-5678"
-    value="<?= htmlspecialchars($registro['telefone'] ?? '') ?>">
-</label></p>
-<p>
-    Foto atual:
-    <?php if (!empty($fotoAtual)): ?>
-        <br>
-        <img src="<?= htmlspecialchars($fotoAtual) ?>"
-        alt="Foto atual" style="max-width:120px; max-height:120px;">
-        <?php else: ?>
-            (sem foto)
+        <?php if ($erro): ?>
+            <div class="alert alert-danger"><?= htmlspecialchars($erro) ?></div>
         <?php endif; ?>
-    
-</p>
-<p> 
-    <label>Trocar foto (opcional):<br>
-    <input type="file" name="foto">
-    </label>
-        </p>
 
-        <!-- Mantem o caminho da foto atual escondido(caso não troque) -->
-         <input type="hidden" name="foto_atual" value="<?= htmlspecialchars($fotoAtual ?? '') ?>">
-         <p>
-            <button type="submit">Salvar alterações</button>
-            <a href="listar.php">Cancelar</a>
-         </p>
-</form>
+        <!-- Início do formulário de edição (pré-preenchido) -->
+        <form method="post" enctype="multipart/form-data">
+            <p>
+                <label>Nome:<br>
+                <input type="text" name="nome" required minlength="3"
+                value="<?= htmlspecialchars($registro['nome'] ?? '') ?>">
+                </label>
+            </p>
 
-<!-- Fim do formulário de edição -->
+            <p>
+                <label>E-mail:<br>
+                <input type="email" name="email" required
+                value="<?= htmlspecialchars($registro['email'] ?? '') ?>">
+                </label>
+            </p>
 
+            <p>
+                <label>Telefone:<br>
+                <input type="text" name="telefone" required 
+                placeholder="(11) 91234-5678"
+                value="<?= htmlspecialchars($registro['telefone'] ?? '') ?>">
+                </label>
+            </p>
+            
+            <p>
+                Foto atual:
+                <?php if (!empty($fotoAtual)): ?>
+                    <br>
+                    <img src="<?= htmlspecialchars($fotoAtual) ?>"
+                    alt="Foto atual" style="max-width:120px; max-height:120px;">
+                <?php else: ?>
+                    (sem foto)
+                <?php endif; ?>
+            </p>
+            
+            <p> 
+                <label>Trocar foto (opcional):<br>
+                <input type="file" name="foto">
+                </label>
+            </p>
 
-
-
-<?php endif; ?>
+            <!-- Mantém o caminho da foto atual escondido(caso não troque) -->
+            <input type="hidden" name="foto_atual" value="<?= htmlspecialchars($fotoAtual ?? '') ?>">
+            
+            <p>
+                <button type="submit" class="btn btn-primary">Salvar alterações</button>
+                <a href="listar.php" class="btn btn-secondary">Cancelar</a>
+            </p>
+        </form>
+        <!-- Fim do formulário de edição -->
+    </div>
 </body>
 </html>
