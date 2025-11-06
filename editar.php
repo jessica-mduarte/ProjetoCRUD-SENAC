@@ -163,6 +163,10 @@ $erro = 'Erro ao enviar a imagem.';
 
 ?>
 
+
+<?php
+    include __DIR__ . '/includes/header.php';
+?>
 <!DOCTYPE html>
 <html lang='pt-BR'>
 <head>
@@ -172,15 +176,23 @@ $erro = 'Erro ao enviar a imagem.';
     <title>Editar Cadastro</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Editar Cadastro</h1>
 
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="text-center">
+            
+                <div class="card shadow">
+                    <div class="card-body">
+        <h3>Editar Cadastro</h3>
+</div>
         <?php if ($erro): ?>
             <div class="alert alert-danger"><?= htmlspecialchars($erro) ?></div>
         <?php endif; ?>
 
         <!-- Início do formulário de edição (pré-preenchido) -->
         <form method="post" enctype="multipart/form-data">
+            <div class="text-center">
             <p>
                 <label>Nome:<br>
                 <input type="text" name="nome" required minlength="3"
@@ -227,8 +239,16 @@ $erro = 'Erro ao enviar a imagem.';
                 <button type="submit" class="btn btn-primary">Salvar alterações</button>
                 <a href="listar.php" class="btn btn-secondary">Cancelar</a>
             </p>
+                </div>
         </form>
         <!-- Fim do formulário de edição -->
-    </div>
+ </div>
+</div>
+</div>
+</div>
 </body>
 </html>
+
+<?php
+    include __DIR__ . '/includes/footer.php';
+?>
